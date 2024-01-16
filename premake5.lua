@@ -13,10 +13,13 @@ project "ImGui"
   IncludeDir["imgui"] = "%{wks.location}/libs/imgui"
 
   includedirs {
+    "%{IncludeDir.glfw}",
     "%{IncludeDir.imgui}"
   }
 
   files {
+    "premake5.lua",
+
     "imconfig.h",
     "imgui.h",
     "imgui.cpp",
@@ -28,6 +31,9 @@ project "ImGui"
     "imstb_textedit.h",
     "imstb_truetype.h",
     "imgui_demo.cpp",
+
+    "backends/imgui_impl_opengl3.cpp",
+    "backends/imgui_impl_glfw.cpp"
   }
 
   filter "system:windows"
