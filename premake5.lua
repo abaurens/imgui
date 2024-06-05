@@ -32,9 +32,11 @@ project "ImGui"
     "imstb_truetype.h",
     "imgui_demo.cpp",
 
-    "backends/imgui_impl_opengl3.cpp",
-    "backends/imgui_impl_glfw.cpp"
+    "backends/**",
   }
+
+  filter "files:backends/**"
+    flags "ExcludeFromBuild"
 
   filter "system:windows"
     defines {
