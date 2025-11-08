@@ -6,16 +6,13 @@ project "ImGui"
   staticruntime "on"
   systemversion "latest"
 
-
   targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
   objdir ("%{wks.location}/build/" .. outputdir .. "/%{prj.name}")
 
-  IncludeDir["imgui"] = "%{wks.location}/libs/imgui"
-
-  includedirs {
-    "%{IncludeDir.glfw}",
-    "%{IncludeDir.imgui}"
-  }
+  --includedirs {
+  --  "%{IncludeDir.glfw}",
+  --  "%{IncludeDir.imgui}"
+  --}
 
   files {
     "premake5.lua",
@@ -56,3 +53,10 @@ project "ImGui"
   filter "configurations:Release"
     runtime "Release"
     optimize "On"
+
+  usage "PUBLIC"
+    includedirs { "./" }
+
+  usage "INTERFACE"
+    defines { "GLFW_INCLUDE_NONE" } -- Require any dependent project to implement it's own opengl loader
+    links { "ImGui" }
